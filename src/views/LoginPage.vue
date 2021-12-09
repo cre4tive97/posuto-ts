@@ -1,14 +1,20 @@
 <template>
-  <div>LoginPage</div>
+  <div class="page">
+    <div class="form__container">
+      <p class="form__title">Login</p>
+      <LoginForm />
+    </div>
+  </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'LoginPage',
+<script>
+import LoginForm from '@/components/LoginForm.vue';
 
-  setup() {
-    //
+export default {
+  components: {
+    LoginForm,
   },
-});
+};
 </script>
+
+<style scoped></style>

@@ -1,24 +1,19 @@
 <template>
-  <div id="app">
-    <AppHeader />
-    <router-view></router-view>
-  </div>
+  <div id="app">test</div>
 </template>
 
-<script>
-import AppHeader from '@/components/common/AppHeader.vue';
+<script lang="ts">
+import Vue from "vue";
 
-export default {
-  name: 'App',
-  components: {
-    AppHeader,
-  },
-};
+export default Vue.extend({
+  name: "App",
+  components: {},
+});
 </script>
 
 <style>
-@import './css/reset.css';
-@import './css/style.css';
+@import "./css/reset.css";
+@import "./css/style.css";
 #app {
   height: 100vh;
 }
