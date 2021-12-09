@@ -1,23 +1,25 @@
 import VueCookies from "vue-cookies";
 
-function saveAuthToCookie(value) {
-  VueCookies.set("posuto_auth", value);
+VueCookies.VueCookies.get;
+
+function saveAuthToCookie(value: string): void {
+  VueCookies.VueCookies.set("posuto_auth", value);
 }
 
-function saveUserToCookie(value) {
-  VueCookies.set("posuto_user", value);
+function saveUserToCookie(value: string): void {
+  VueCookies.VueCookies.set("posuto_user", value);
 }
 
-function getAuthFromCookie() {
-  return VueCookies.get("posuto_auth");
+function getAuthFromCookie(): string {
+  return VueCookies.VueCookies.get("posuto_auth");
 }
 
-function getUserFromCookie() {
-  return VueCookies.get("posuto_user");
+function getUserFromCookie(): string {
+  return VueCookies.VueCookies.get("posuto_user");
 }
 
-function deleteCookie(value) {
-  VueCookies.remove(value);
+function deleteCookie(value: string): void {
+  VueCookies.VueCookies.remove(value);
 }
 
 export {
