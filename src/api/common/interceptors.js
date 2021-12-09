@@ -1,4 +1,4 @@
-import store from '@/store/index';
+import store from "@/store/index";
 
 export function setInterceptors(instance) {
   // Add a request interceptor
@@ -12,7 +12,7 @@ export function setInterceptors(instance) {
     function (error) {
       // Do something with request error
       return Promise.reject(error);
-    },
+    }
   );
 
   // Add a response interceptor
@@ -26,7 +26,7 @@ export function setInterceptors(instance) {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
       return Promise.reject(error);
-    },
+    }
   );
   return instance;
 }

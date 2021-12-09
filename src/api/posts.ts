@@ -1,12 +1,12 @@
-import { posts } from '@/api/index';
+import { posts } from "@/api/index";
 
 // 포스트 조회
 function getPostData() {
-  return posts.get('/');
+  return posts.get("/");
 }
 // 포스트 추가
 function addPostData(postData) {
-  return posts.post('/', postData);
+  return posts.post("/", postData);
 }
 // 포스트 수정
 function updatePostData(postId, postData) {

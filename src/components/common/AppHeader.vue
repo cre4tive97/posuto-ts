@@ -17,26 +17,26 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
-import AppLogo from '@/components/common/AppLogo.vue';
-import { deleteCookie } from '@/utils/cookies';
+import { mapState, mapGetters, mapMutations } from "vuex";
+import AppLogo from "@/components/common/AppLogo.vue";
+import { deleteCookie } from "@/utils/cookies.js";
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
   components: {
     AppLogo,
   },
   computed: {
-    ...mapState(['nickname']),
-    ...mapGetters(['isLogin']),
+    ...mapState(["nickname"]),
+    ...mapGetters(["isLogin"]),
   },
   methods: {
-    ...mapMutations(['clearToken', 'clearNickname']),
+    ...mapMutations(["clearToken", "clearNickname"]),
     logout() {
       this.clearToken();
       this.clearNickname();
-      deleteCookie('posuto_user');
-      deleteCookie('posuto_auth');
-      this.$router.push('/login');
+      deleteCookie("posuto_user");
+      deleteCookie("posuto_auth");
+      this.$router.push("/login");
     },
   },
 };
