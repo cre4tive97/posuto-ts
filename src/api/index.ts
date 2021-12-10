@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios from "axios";
 import { setInterceptors } from "@/api/common/interceptors";
 
 function createAxiosInstance() {

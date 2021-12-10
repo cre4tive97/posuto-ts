@@ -21,18 +21,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import AppSetting from "@/components/common/AppSetting.vue";
 import PostListView from "@/components/PostListView.vue";
 import Spinner from "@/components/common/Spinner.vue";
-
 import {
   getPostData,
   addPostData,
   deletePostData,
   updatePostData,
 } from "@/api/posts";
-export default {
+
+export default Vue.extend({
   name: "MainPage",
   components: {
     PostListView,
@@ -196,7 +197,8 @@ export default {
     },
     // 메인페이지 최초 접속시 localStorage에 기록 남김
     setAccessRecord() {
-      if (!localStorage.getItem("access")) localStorage.setItem("access", true);
+      if (!localStorage.getItem("access"))
+        localStorage.setItem("access", "true");
     },
     // PostItems 비어있으면 스토어에 체크함
     postItemsEmptyCheck() {
@@ -223,7 +225,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style></style>

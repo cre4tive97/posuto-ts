@@ -34,7 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/api/common/interceptors.js", "src/utils/cookies.js", "src/utils/cookies.js"  ],
+, "src/api/common/interceptors.ts", "src/utils/cookies.js", "src/utils/cookies.js"  ],
   "exclude": [
     "node_modules"
   ]
