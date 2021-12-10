@@ -61,17 +61,17 @@
   </section>
 </template>
 
-<script>
-import 'gridstack/dist/gridstack.min.css';
-import { GridStack } from 'gridstack';
-import 'gridstack/dist/h5/gridstack-dd-native';
-
-export default {
+<script lang="ts">
+import Vue from "vue";
+import "gridstack/dist/gridstack.min.css";
+import { GridStack } from "gridstack";
+import "gridstack/dist/h5/gridstack-dd-native";
+export default Vue.extend({
   data() {
     return {
       grid: undefined,
-      currentEditingTitle: '',
-      currentEditingContents: '',
+      currentEditingTitle: "",
+      currentEditingContents: "",
       // isEditing: false,
     };
   },
@@ -87,15 +87,15 @@ export default {
   methods: {
     // 포스트 위에 마우스 올릴 시 버튼을 보여줌
     onMouseOver(i) {
-      this.$refs.btnGroup[i].classList.remove('hidden');
+      this.$refs.btnGroup[i].classList.remove("hidden");
     },
     // 포스트 위에서 마우스가 사라지면 버튼을 사라지게 함
     onMouseLeave(i) {
-      this.$refs.btnGroup[i].classList.add('hidden');
+      this.$refs.btnGroup[i].classList.add("hidden");
     },
     // 수정버튼 활성화
     emitEditPost() {
-      this.$emit('editPost');
+      this.$emit("editPost");
     },
     // 현재 수정중 포스트 타이틀과 currentEditingTitle의 값을 일치화
     matchTitle(e) {
@@ -108,9 +108,9 @@ export default {
     // 만약 현재 수정중인 포스트가 없다면, 수정 버튼을 활성화하고 MainPage.vue로 emit
     emitStartEditing(i) {
       if (this.isEditing !== true) {
-        this.$emit('startEditing', i);
+        this.$emit("startEditing", i);
       } else {
-        alert('이미 수정중인 게시물이 있습니다.');
+        alert("이미 수정중인 게시물이 있습니다.");
       }
     },
     // 현재 포스트의 수정된 데이터를 postData에 담아, MainPage 컴포넌트로 보냄.
@@ -119,41 +119,41 @@ export default {
         title: this.currentEditingTitle,
         contents: this.currentEditingContents,
         position: {
-          width: this.$refs.item[i].getAttribute('gs-w'),
-          height: this.$refs.item[i].getAttribute('gs-h'),
-          x: this.$refs.item[i].getAttribute('gs-x'),
-          y: this.$refs.item[i].getAttribute('gs-y'),
+          width: this.$refs.item[i].getAttribute("gs-w"),
+          height: this.$refs.item[i].getAttribute("gs-h"),
+          x: this.$refs.item[i].getAttribute("gs-x"),
+          y: this.$refs.item[i].getAttribute("gs-y"),
         },
         isEditing: false,
       };
-      this.$emit('finishEditing', postItem, postData);
+      this.$emit("finishEditing", postItem, postData);
       this.initCurrentEditingPost();
     },
     // CurrentEditing 타이틀/컨텐츠 초기화
     initCurrentEditingPost() {
-      this.currentEditingTitle = '';
-      this.currentEditingContents = '';
+      this.currentEditingTitle = "";
+      this.currentEditingContents = "";
     },
     // GridStack 세팅.
     setGrid() {
       //Grid init
       this.grid = GridStack.init({
         float: true,
-        cellHeight: '50px',
+        cellHeight: "50px",
         minRow: 13,
         resizable: {
-          handles: 'e,se,s,w',
+          handles: "e,se,s,w",
         },
         alwaysShowResizeHandle:
           /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent,
+            navigator.userAgent
           ),
       });
-      this.grid.on('change', (event, items) => {
+      this.grid.on("change", (event, items) => {
         // 수정버튼 클릭시 Form에 내용 작성할 경우 또한 'change'로 감지됨.
         // 모든 수정버튼이 비활성화 되었을 때에만 custom event 보냄.
         if (this.isEditing === false || this.isEditing === undefined) {
-          this.$emit('save:position', this.setCurrentPositionValue(items));
+          this.$emit("save:position", this.setCurrentPositionValue(items));
         }
       });
       if (this.isEditing === true) {
@@ -166,18 +166,18 @@ export default {
         this.grid.enableResize(true);
       }
       // 드래그 시작시 커서 변경
-      this.grid.on('dragstart', () => {
-        document.body.style.cursor = 'grabbing';
+      this.grid.on("dragstart", () => {
+        document.body.style.cursor = "grabbing";
       });
       // 드래그 종료시 커서 변경
-      this.grid.on('dragstop', () => {
-        document.body.style.cursor = 'auto';
+      this.grid.on("dragstop", () => {
+        document.body.style.cursor = "auto";
       });
     },
     // 이동/리사이즈 이벤트가 발생한 아이템들의 포지션값을 리턴함
     setCurrentPositionValue(items) {
       let position = [];
-      items.forEach(item => {
+      items.forEach((item) => {
         position.push({
           width: item.w,
           height: item.h,
@@ -189,7 +189,7 @@ export default {
       return position;
     },
   },
-};
+});
 </script>
 
 <style scoped>
@@ -265,7 +265,7 @@ export default {
   height: 100%;
   font-size: 1rem;
   font-weight: 400;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   overflow: visible;
   width: 100%;
 }

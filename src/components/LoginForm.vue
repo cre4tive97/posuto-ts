@@ -32,35 +32,36 @@
   </form>
 </template>
 
-<script>
-import FormMixin from '@/mixins/FormMixin';
-export default {
-  name: 'LoginForm',
+<script lang="ts">
+import Vue from "vue";
+import FormMixin from "@/mixins/FormMixin";
+export default Vue.extend({
+  name: "LoginForm",
   data() {
     return {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     };
   },
   mixins: [FormMixin],
   methods: {
     async submitForm() {
       try {
-        await this.$store.dispatch('LOGIN_USER', {
+        await this.$store.dispatch("LOGIN_USER", {
           username: this.username,
           password: this.password,
         });
-        this.$router.push('/main');
+        this.$router.push("/main");
       } catch (error) {
         if (error.response.status === 401) {
-          alert('Username 또는 Password가 틀렸습니다!');
+          alert("Username 또는 Password가 틀렸습니다!");
         }
       } finally {
         this.initForm();
       }
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

@@ -48,23 +48,24 @@
   </form>
 </template>
 
-<script>
-import { registerUser } from '@/api/auth';
-import SignupModal from '@/components/SignupModal.vue';
-import FormMixin from '@/mixins/FormMixin';
-export default {
-  name: 'SignUpForm',
+<script lang="ts">
+import Vue from "vue";
+import { registerUser } from "@/api/auth";
+import SignupModal from "@/components/SignupModal.vue";
+import FormMixin from "@/mixins/FormMixin";
+export default Vue.extend({
+  name: "SignUpForm",
   components: {
     SignupModal,
   },
   data() {
     return {
       //form data
-      username: '',
-      password: '',
-      nickname: '',
+      username: "",
+      password: "",
+      nickname: "",
       // modal
-      registerdNickname: '',
+      registerdNickname: "",
       signupSuccess: false,
     };
   },
@@ -81,7 +82,7 @@ export default {
         this.showSignupModal(data);
       } catch (error) {
         if (error.response.status === 409) {
-          alert('이미 사용중인 Username 입니다!');
+          alert("이미 사용중인 Username 입니다!");
         }
       } finally {
         this.initForm();
@@ -93,7 +94,7 @@ export default {
       this.signupSuccess = true;
     },
   },
-};
+});
 </script>
 
 <style scoped>

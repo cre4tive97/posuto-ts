@@ -11,13 +11,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'SignupModal',
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  name: "SignupModal",
   props: {
     nickname: String,
   },
-};
+});
 </script>
 
 <style scoped>
