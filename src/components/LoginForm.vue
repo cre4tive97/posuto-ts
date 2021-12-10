@@ -36,6 +36,7 @@
 import Vue from "vue";
 import { ActionTypes } from "@/store/actions";
 import { validateUsername } from "@/utils/validation";
+import { AxiosError } from "axios";
 
 export default Vue.extend({
   name: "LoginForm",
@@ -59,7 +60,7 @@ export default Vue.extend({
         });
         this.$router.push("/main");
       } catch (error) {
-        if (error.response.status === 401) {
+        if (this.isAxiosError(error) && error.response?.status === 401) {
           alert("Username 또는 Password가 틀렸습니다!");
         }
       } finally {
@@ -69,6 +70,9 @@ export default Vue.extend({
     initForm() {
       this.username = "";
       this.password = "";
+    },
+    isAxiosError(error: any): error is AxiosError {
+      return !!error.isAxiosError;
     },
   },
 });

@@ -53,6 +53,7 @@ import { registerUser } from "@/api/auth";
 import SignupModal from "@/components/SignupModal.vue";
 import { SignupSuccess } from "@/types/types";
 import { validateUsername } from "@/utils/validation";
+import { AxiosError } from "axios";
 import Vue from "vue";
 
 export default Vue.extend({
@@ -86,8 +87,8 @@ export default Vue.extend({
           nickname: this.nickname,
         });
         this.showSignupModal(data);
-      } catch (error: any) {
-        if (error.response.status === 409) {
+      } catch (error) {
+        if (this.isAxiosError(error) && error.response?.status === 409) {
           alert("이미 사용중인 Username 입니다!");
         }
       } finally {
@@ -102,6 +103,9 @@ export default Vue.extend({
     showSignupModal(data: SignupSuccess) {
       this.registerdNickname = data.nickname;
       this.signupSuccess = true;
+    },
+    isAxiosError(error: any): error is AxiosError {
+      return !!error.isAxiosError;
     },
   },
 });
