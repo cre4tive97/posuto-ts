@@ -1,6 +1,7 @@
 import store from "@/store/index";
+import { AxiosInstance } from "axios";
 
-export function setInterceptors(instance) {
+export function setInterceptors(instance: AxiosInstance) {
   // Add a request interceptor
   instance.interceptors.request.use(
     function (config) {

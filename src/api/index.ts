@@ -15,4 +15,4 @@ function createInstanceWithAuth(url: string) {
 }
 
 export const instance = createAxiosInstance();
-export const posts: AxiosInstance = createInstanceWithAuth("posts");
+export const posts = createInstanceWithAuth("posts");

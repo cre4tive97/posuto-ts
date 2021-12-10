@@ -1,7 +1,8 @@
 import { posts } from "@/api/index";
+import { AxiosResponse } from "axios";
 
 // 포스트 조회
-function getPostData() {
+function getPostData(): Promise<AxiosResponse> {
   return posts.get("/");
 }
 // 포스트 추가
