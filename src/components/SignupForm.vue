@@ -49,11 +49,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { registerUser } from "@/api/auth";
 import SignupModal from "@/components/SignupModal.vue";
 import FormMixin from "@/mixins/FormMixin";
-export default Vue.extend({
+import { SignupSuccess } from "@/types/types";
+export default FormMixin.extend({
   name: "SignUpForm",
   components: {
     SignupModal,
@@ -69,7 +69,6 @@ export default Vue.extend({
       signupSuccess: false,
     };
   },
-  mixins: [FormMixin],
   methods: {
     // 폼 제출할시 폼 데이터를 서버로 post 요청후, 모달창을 보여줌
     async submitForm() {
@@ -88,8 +87,7 @@ export default Vue.extend({
         this.initForm();
       }
     },
-
-    showSignupModal(data) {
+    showSignupModal(data: SignupSuccess) {
       this.registerdNickname = data.nickname;
       this.signupSuccess = true;
     },

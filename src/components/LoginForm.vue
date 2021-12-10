@@ -54,7 +54,7 @@ export default FormMixin.extend({
         });
 
         this.$router.push("/main");
-      } catch (error) {
+      } catch (error: any) {
         if (error.response.status === 401) {
           alert("Username 또는 Password가 틀렸습니다!");
         }
