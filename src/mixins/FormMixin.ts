@@ -1,5 +1,6 @@
 import { validateUsername } from "@/utils/validation";
-export default {
+import Vue from "vue";
+export default Vue.extend({
   computed: {
     isUsernameValid(): boolean {
       return validateUsername(this.username);
@@ -14,4 +15,4 @@ export default {
       }
     },
   },
-};
+});

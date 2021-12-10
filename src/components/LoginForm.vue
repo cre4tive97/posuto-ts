@@ -35,6 +35,8 @@
 <script lang="ts">
 import Vue from "vue";
 import FormMixin from "@/mixins/FormMixin";
+import { ActionTypes } from "@/store/actions";
+
 export default Vue.extend({
   name: "LoginForm",
   data() {
@@ -47,10 +49,11 @@ export default Vue.extend({
   methods: {
     async submitForm() {
       try {
-        await this.$store.dispatch("LOGIN_USER", {
+        await this.$store.dispatch(ActionTypes.LOGIN_USER, {
           username: this.username,
           password: this.password,
         });
+
         this.$router.push("/main");
       } catch (error) {
         if (error.response.status === 401) {

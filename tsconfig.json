@@ -33,7 +33,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "src/types/**.d.ts",
 , "src/api/common/interceptors.ts", "src/utils/cookies.js", "src/utils/cookies.js"  ],
   "exclude": [
     "node_modules"

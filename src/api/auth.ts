@@ -1,13 +1,19 @@
 import { instance } from "@/api/index";
-import { LoginType, SignUpType } from "@/types/types";
+import {
+  LoginSuccess,
+  LoginType,
+  SignupSuccess,
+  SignUpType,
+} from "@/types/types";
+import { AxiosPromise } from "axios";
 
 // 회원가입
-function registerUser(userData: SignUpType) {
+function registerUser(userData: SignUpType): AxiosPromise<SignupSuccess> {
   return instance.post("signup", userData);
 }
 
 // 로그인
-function loginUser(userData: LoginType) {
+function loginUser(userData: LoginType): AxiosPromise<LoginSuccess> {
   return instance.post("login", userData);
 }
 

@@ -1,5 +1,7 @@
-const getters: {
-    isLogin(state) {
-      return state.nickname !== "";
-    },
+import { RootState } from "./state";
+
+const getters = {
+  isLogin(state: RootState): boolean {
+    return state.nickname !== "";
   },
+};
