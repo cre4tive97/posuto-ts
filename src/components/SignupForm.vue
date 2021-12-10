@@ -80,7 +80,7 @@ export default Vue.extend({
           nickname: this.nickname,
         });
         this.showSignupModal(data);
-      } catch (error) {
+      } catch (error: any) {
         if (error.response.status === 409) {
           alert("이미 사용중인 Username 입니다!");
         }

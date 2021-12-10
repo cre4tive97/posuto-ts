@@ -33,11 +33,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import FormMixin from "@/mixins/FormMixin";
 import { ActionTypes } from "@/store/actions";
 
-export default Vue.extend({
+// mixins
+export default FormMixin.extend({
   name: "LoginForm",
   data() {
     return {
@@ -45,7 +45,6 @@ export default Vue.extend({
       password: "",
     };
   },
-  mixins: [FormMixin],
   methods: {
     async submitForm() {
       try {
