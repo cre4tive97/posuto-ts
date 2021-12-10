@@ -5,10 +5,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppLogo',
-};
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  name: "AppLogo",
+});
 </script>
 
 <style scoped>

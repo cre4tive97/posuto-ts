@@ -20,30 +20,32 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  name: "AppSetting",
   data() {
     return {
       colors: [
-        { color: '#FEC0CA', name: 'Pink' },
-        { color: '#2dfff1', name: 'Mint' },
-        { color: '#96d5ff', name: 'Skyblue' },
-        { color: '#f2f486', name: 'Yellow' },
-        { color: '#F5F5F6', name: 'White' },
-        { color: '#a5ffb9', name: 'Green' },
-        { color: '#DAC6AE', name: 'Beige' },
-        { color: '#ff7d3d', name: 'Orange' },
+        { color: "#FEC0CA", name: "Pink" },
+        { color: "#2dfff1", name: "Mint" },
+        { color: "#96d5ff", name: "Skyblue" },
+        { color: "#f2f486", name: "Yellow" },
+        { color: "#F5F5F6", name: "White" },
+        { color: "#a5ffb9", name: "Green" },
+        { color: "#DAC6AE", name: "Beige" },
+        { color: "#ff7d3d", name: "Orange" },
       ],
     };
   },
   methods: {
     // LocalStorage에 선택한 post color를 저장하고 actions dispatch
     selectPostColor(color) {
-      localStorage.setItem('post_color', color);
-      this.$store.dispatch('GET_POSTCOLOR');
+      localStorage.setItem("post_color", color);
+      this.$store.dispatch("GET_POSTCOLOR");
     },
   },
-};
+});
 </script>
 
 <style scoped>

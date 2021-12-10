@@ -4,13 +4,14 @@
   </div>
 </template>
 
-<script>
-import SquareLoader from 'vue-spinner/src/SquareLoader.vue';
-export default {
+<script lang="ts">
+import Vue from "vue";
+import SquareLoader from "vue-spinner/src/SquareLoader.vue";
+export default Vue.extend({
   components: {
     SquareLoader,
   },
-};
+});
 </script>
 
 <style scoped>

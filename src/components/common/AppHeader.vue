@@ -16,11 +16,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { mapState, mapGetters, mapMutations } from "vuex";
 import AppLogo from "@/components/common/AppLogo.vue";
 import { deleteCookie } from "@/utils/cookies.js";
-export default {
+export default Vue.extend({
   name: "AppHeader",
   components: {
     AppLogo,
@@ -39,7 +40,7 @@ export default {
       this.$router.push("/login");
     },
   },
-};
+});
 </script>
 
 <style scoped>
