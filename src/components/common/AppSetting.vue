@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts">
+import { ActionTypes } from "@/store/actions";
 import Vue from "vue";
 export default Vue.extend({
   name: "AppSetting",
@@ -40,9 +41,9 @@ export default Vue.extend({
   },
   methods: {
     // LocalStorage에 선택한 post color를 저장하고 actions dispatch
-    selectPostColor(color) {
+    selectPostColor(color: string) {
       localStorage.setItem("post_color", color);
-      this.$store.dispatch("GET_POSTCOLOR");
+      this.$store.dispatch(ActionTypes.GET_POSTCOLOR);
     },
   },
 });
