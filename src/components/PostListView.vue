@@ -62,11 +62,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
 import "gridstack/dist/gridstack.min.css";
 import { GridStack } from "gridstack";
 import "gridstack/dist/h5/gridstack-dd-native";
-export default Vue.extend({
+import { PostDataType } from "@/types/types";
+export default (
+  Vue as VueConstructor<Vue & { $refs: { btnGroup: HTMLDivElement } }>
+).extend({
   data() {
     return {
       grid: undefined,
@@ -86,11 +89,11 @@ export default Vue.extend({
 
   methods: {
     // 포스트 위에 마우스 올릴 시 버튼을 보여줌
-    onMouseOver(i) {
+    onMouseOver(i: number) {
       this.$refs.btnGroup[i].classList.remove("hidden");
     },
     // 포스트 위에서 마우스가 사라지면 버튼을 사라지게 함
-    onMouseLeave(i) {
+    onMouseLeave(i: number) {
       this.$refs.btnGroup[i].classList.add("hidden");
     },
     // 수정버튼 활성화
@@ -98,15 +101,15 @@ export default Vue.extend({
       this.$emit("editPost");
     },
     // 현재 수정중 포스트 타이틀과 currentEditingTitle의 값을 일치화
-    matchTitle(e) {
+    matchTitle(e: InputEvent) {
       this.currentEditingTitle = e.target.value;
     },
     // 현재 수정중 포스트 컨텐츠과 currentEditingContents의 값을 일치화
-    matchContents(e) {
+    matchContents(e: InputEvent) {
       this.currentEditingContents = e.target.value;
     },
     // 만약 현재 수정중인 포스트가 없다면, 수정 버튼을 활성화하고 MainPage.vue로 emit
-    emitStartEditing(i) {
+    emitStartEditing(i: number) {
       if (this.isEditing !== true) {
         this.$emit("startEditing", i);
       } else {
@@ -114,7 +117,7 @@ export default Vue.extend({
       }
     },
     // 현재 포스트의 수정된 데이터를 postData에 담아, MainPage 컴포넌트로 보냄.
-    emitFinishEditing(i, postItem) {
+    emitFinishEditing(i, postItem: PostDataType) {
       const postData = {
         title: this.currentEditingTitle,
         contents: this.currentEditingContents,

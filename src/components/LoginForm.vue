@@ -33,17 +33,22 @@
 </template>
 
 <script lang="ts">
-import FormMixin from "@/mixins/FormMixin";
+import Vue from "vue";
 import { ActionTypes } from "@/store/actions";
+import { validateUsername } from "@/utils/validation";
 
-// mixins
-export default FormMixin.extend({
+export default Vue.extend({
   name: "LoginForm",
   data() {
     return {
       username: "",
       password: "",
     };
+  },
+  computed: {
+    isUsernameValid(): boolean {
+      return validateUsername(this.username);
+    },
   },
   methods: {
     async submitForm() {
@@ -52,15 +57,18 @@ export default FormMixin.extend({
           username: this.username,
           password: this.password,
         });
-
         this.$router.push("/main");
-      } catch (error: any) {
+      } catch (error) {
         if (error.response.status === 401) {
           alert("Username 또는 Password가 틀렸습니다!");
         }
       } finally {
         this.initForm();
       }
+    },
+    initForm() {
+      this.username = "";
+      this.password = "";
     },
   },
 });

@@ -51,9 +51,11 @@
 <script lang="ts">
 import { registerUser } from "@/api/auth";
 import SignupModal from "@/components/SignupModal.vue";
-import FormMixin from "@/mixins/FormMixin";
 import { SignupSuccess } from "@/types/types";
-export default FormMixin.extend({
+import { validateUsername } from "@/utils/validation";
+import Vue from "vue";
+
+export default Vue.extend({
   name: "SignUpForm",
   components: {
     SignupModal,
@@ -68,6 +70,11 @@ export default FormMixin.extend({
       registerdNickname: "",
       signupSuccess: false,
     };
+  },
+  computed: {
+    isUsernameValid(): boolean {
+      return validateUsername(this.username);
+    },
   },
   methods: {
     // 폼 제출할시 폼 데이터를 서버로 post 요청후, 모달창을 보여줌
@@ -86,6 +93,11 @@ export default FormMixin.extend({
       } finally {
         this.initForm();
       }
+    },
+    initForm() {
+      this.username = "";
+      this.password = "";
+      this.nickname = "";
     },
     showSignupModal(data: SignupSuccess) {
       this.registerdNickname = data.nickname;
