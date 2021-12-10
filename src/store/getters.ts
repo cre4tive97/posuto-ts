@@ -1,7 +1,9 @@
 import { RootState } from "./state";
 
-const getters = {
+export const getters = {
   isLogin(state: RootState): boolean {
     return state.nickname !== "";
   },
 };
+
+export type Getters = typeof getters;

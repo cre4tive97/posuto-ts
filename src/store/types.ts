@@ -2,6 +2,7 @@ import { RootState } from "./state";
 import { Mutations } from "./mutations";
 import { CommitOptions, DispatchOptions, Store } from "vuex";
 import { Actions } from "./actions";
+import { Getters } from "./getters";
 
 type NewMutations = {
   commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
@@ -19,6 +20,16 @@ type NewActions = {
   ): ReturnType<Actions[K]>;
 };
 
-export type NewStore = Omit<Store<RootState>, "commit" | "dispatch"> &
+type NewGetters = {
+  getters: {
+    [K in keyof Getters]: ReturnType<Getters[K]>;
+  };
+};
+
+export type NewStore = Omit<
+  Store<RootState>,
+  "commit" | "dispatch" | "getters"
+> &
   NewMutations &
-  NewActions;
+  NewActions &
+  NewGetters;
